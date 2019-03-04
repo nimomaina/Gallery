@@ -14,3 +14,26 @@ class Picture(models.Model):
     location = models.ForeignKey(Location)
     category = models.ForeignKey(Category)
 
+    def save_pic(self):
+        self.save()
+
+    def delete_pic(self):
+        self.delete()
+
+    @classmethod
+    def search_by_category(cls,category):
+        pic = cls.objects.filter(category__icontains = category)
+        return pic
+
+    @classmethod
+    def search_by_category(cls, category):
+        pic = cls.objects.filter(category__icontains=category)
+        return pic
+
+    def get_image_by_id(id):
+        pic = Picture.objects.filter(id)
+        return pic
+
+
+
+

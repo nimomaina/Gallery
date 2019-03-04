@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Gallery</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,10 +13,6 @@ body,h1 {font-family: "Montserrat", sans-serif}
 img {margin-bottom: -7px}
 .w3-row-padding img {margin-bottom: 12px}
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -35,7 +31,7 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../media/clothe.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../media/clothe.jpg');
   min-height: 100%;
 }
 
@@ -54,6 +50,8 @@ body, html {
 
 
 
+
+
 </style>
 <body>
 
@@ -63,96 +61,101 @@ body, html {
 <!-- !PAGE CONTENT! -->
 
 
-    <!-- Header -->
-    <!-- Navbar (sit on top) -->
-    <div class="w3-top">
-        <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
-               href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">HOME</a>
+<!-- Header -->
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">HOME</a>
+        <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">HOME</a>
 
 
-            </a>
-        </div>
-
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-
-        </div>
+        </a>
     </div>
 
-    <!-- First Parallax Image with Logo Text -->
-    <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-        <div class="w3-display-middle">
-            <form class="w3-center w3-xlarge w3-wide w3-animate-opacity" role="search" action="">
-                <div class="w3-bar">
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
 
-                    <button class="w3-button w3-bar-item w3-hide-small" type="submit">
-                        <i class="fa fa-search"></i>
-                        <input type="text" class="w3-input w3-round w3-bar-item" placeholder="Search Images" name="Category">
-
-                    </button>
-
-
-                </div>
-
-            </form>
-        </div>
     </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+    <div class="w3-display-middle">
+        <form class="w3-center w3-xlarge w3-wide w3-animate-opacity" role="search" action="">
+            <div class="w3-bar">
+                <input type="text" class="w3-input w3-round w3-bar-item" placeholder="Search Images" name="Category">
 
 
-    <!-- Photo Grid -->
+                <button class="w3-button w3-bar-item w3-hide-small w3-white" type="submit">
+                    <i class="fa fa-search "></i>
 
-    <div class="container">
+                </button>
 
 
-        <div class="w3-row-padding w3-margin">
-            {% for pic in pics %}
-            <div class="w3-col m3">
-                <img src="{{pic.image.url}}" style="width:100%;cursor:pointer"
-                     onclick="openModal();currentDiv(1)" class="w3-hover-shadow">
             </div>
-            {% endfor%}
-        </div>
 
-        <div id="myModal" class="w3-modal " style="opacity:1">
+        </form>
+    </div>
+</div>
+
+
+<!-- Photo Grid -->
+
+<div class="container">
+
+
+    <div class="w3-row-padding w3-margin">
+        {% for pic in pics %}
+        <div class="w3-col m3">
+            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer"
+                 onclick="openModal();currentDiv(1)" class="w3-hover-shadow">
+        </div>
+        {% endfor%}
+    </div>
+
+    <div id="myModal" class="w3-modal  " style="opacity:1">
             <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
                   onclick="closeModal()" style="cursor:pointer">×</span>
-            <div class="">
+        <div class="">
 
-                <div class=" w3-modal-content w3-center" style="max-width:600px">
+            <div class=" w3-modal-content w3-center" style="max-width:600px">
+                {% for pic in pics %}
+                <img class="mySlides  w3-center" src="{{pic.image.url}}" style="max-height:70vh; width:100%">
+                {% endfor%}
+
+                <div class="w3-row w3-black w3-center">
+
+                    <p id="captionss">Nairobi</p>
+
+                    <div class="w3-display-container">
+
+
+                        <p id="caption">Style</p>
+                        <span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>
+                        <span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>
+                    </div>
+
                     {% for pic in pics %}
-                    <img class="mySlides  w3-center" src="{{pic.image.url}}" style="max-height:70vh; width:100%">
+                    <div class="w3-col m3">
+
+                        <img class="demo " src="{{pic.image.url}}"
+                             style="width:40vw; height:40vh; display:none" onclick="currentDiv(1)"
+                             alt="{{pic.description}}">
+
+
+                    </div>
                     {% endfor%}
+                </div> <!-- End row -->
+            </div> <!-- End w3-content -->
 
-                    <div class="w3-row w3-black w3-center">
+        </div> <!-- End modal content -->
+    </div> <!-- End modal -->
 
-
-                        <div class="w3-display-container">
-
-                            <p id="caption"></p>
-                            <span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>
-                            <span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>
-                        </div>
-
-                        {% for pic in pics %}
-                        <div class="w3-col m3">
-
-                            <img class="demo " src="{{pic.image.url}}"
-                                 style="width:40vw; height:40vh; display:none" onclick="currentDiv(1)" alt="{{pic.description}}">
-
-
-                        </div>
-                        {% endfor%}
-                    </div> <!-- End row -->
-                </div> <!-- End w3-content -->
-
-            </div> <!-- End modal content -->
-        </div> <!-- End modal -->
-
-    </div>
+</div>
 
 
 <script>
@@ -168,11 +171,11 @@ var slideIndex = 1;
 showDivs(slideIndex);
 
 function plusDivs(n) {
-  showDivs(slideIndex += n);
+  showDivs(slideIndex -= n);
 }
 
 function currentDiv(n) {
-  showDivs(slideIndex = n);
+  showDivs(slideIndex += n);
 }
 
 function showDivs(n) {
@@ -214,6 +217,8 @@ function w3_open() {
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
+
+
 
 
 
