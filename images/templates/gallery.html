@@ -8,13 +8,13 @@
 <div class="bgimg-1 w3-display-container" id="home">
     <div class="w3-display-middle">
         <h2>NimPic</h2>
-        <form class="w3-center " role="search" action="{%url 'search_category' %}">
+        <form class="w3-center" role="search" action="{%url 'search_category' %}">
             <div class="w3-bar">
-                <input type="text" class="w3-input form-control w3-bar-item" placeholder="Search Images"
+                <input type="text" class="w3-bar-item w3-input w3-border form-control" placeholder="Search Images"
                        name="Category">
 
 
-                <button class="w3-button w3-bar-item w3-hide-small w3-white" type="submit">
+                <button class="btn w3-bar-item w3-hide-small w3-white" type="submit">
                     <i class="fa fa-search "></i>
 
                 </button>
@@ -26,6 +26,48 @@
     </div>
 </div>
 
+<!-- !PAGE CONTENT! -->
 
 <!-- Photo Grid -->
+
+{% for pic in pics %}
+
+<div class="w3-col m3">
+    <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+         data-toggle="modal" data-target="#myModal{{pic.id}}">
+
+</div>
+{% endfor%}
+
+{% for pic in pics %}
+<!-- Modal -->
+<div id="myModal{{pic.id}}" class="modal fade" role="dialog" style="color:000">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+
+                <img src="{{pic.image.url}}" style="width:auto; max-height:300px">
+
+                <h4 class="modal-title">{{pic.name}}</h4>
+
+            </div>
+            <div class="modal-footer">
+                <input type="text" value="https://nimo-pic.herokuapp.com{{pic.image.url}}l" id="{{pic.id}}-url">
+                <button onclick="copyLink()">Copy text</button>
+
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endfor%}
 {% endblock %}
