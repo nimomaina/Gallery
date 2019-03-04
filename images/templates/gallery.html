@@ -29,10 +29,11 @@
 <!-- !PAGE CONTENT! -->
 
 <!-- Photo Grid -->
+<div class="w3-row-padding w3-margin">
 
 {% for pic in pics %}
 
-<div class="w3-col m3">
+<div class="w3-col m3 s1">
     <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
          data-toggle="modal" data-target="#myModal{{pic.id}}">
 
@@ -45,7 +46,7 @@
     <div class="modal-dialog">
 
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content w3-black">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -54,20 +55,23 @@
 
                 <img src="{{pic.image.url}}" style="width:auto; max-height:300px">
 
-                <h4 class="modal-title">{{pic.name}}</h4>
+                <h4  >Name: {{pic.name}}</h4>
+                                <p>Description: {{pic.description}}</p>
+
 
             </div>
-            <div class="modal-footer">
-                <input type="text" value="https://nimo-pic.herokuapp.com{{pic.image.url}}l" id="{{pic.id}}-url">
+            <footer style="color:black">
+                <input type="text" value="https://nimo-pic.herokuapp.com{{pic.image.url}}" id="{{pic.id}}-url">
                 <button onclick="copyLink()">Copy text</button>
 
 
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-            </div>
+            </footer>
         </div>
 
     </div>
 </div>
 {% endfor%}
+    </div>
 {% endblock %}

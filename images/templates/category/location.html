@@ -17,11 +17,13 @@
 
      <div class="w3-row-padding w3-margin">
 {% for pic in location %}
-        <div class="w3-col m3 s1">
-            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
-                 onclick="openModal();currentDiv({{pic.id}})" class="w3-hover-shadow">
-        </div>
+    <div class="w3-col m3">
+    <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+         data-toggle="modal" data-target="#myModal{{pic.id}}">
+
+</div>
         {% endfor%}
+
     </div>
 
 

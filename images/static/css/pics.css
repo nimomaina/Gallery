@@ -7,7 +7,7 @@ img {margin-bottom: -7px}
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
   height: 100%;
-  color: #fff;
+  color:#fff;
   line-height: 1.8;
 }
 
@@ -21,7 +21,7 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../media/clothe.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../images/autumn.jpg');
   min-height: 100%;
 }
 
