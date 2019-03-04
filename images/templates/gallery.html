@@ -48,18 +48,15 @@ body, html {
     min-height: 400px;
   }
 }
-
-
-
-
-
-
+.mySlides {display:none}
 
 
 
 
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <body>
 
 <!-- Sidebar -->
@@ -136,106 +133,50 @@ body, html {
     <div class="w3-row-padding w3-margin">
 
         {% for pic in pics %}
+
         <div class="w3-col m3 ">
             <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
-                 onclick="openModal();currentDiv({{pic.id}})" class="w3-hover-shadow">
+                 onclick="onClick(this)" class="w3-hover-shadow demo" alt = "{{pic.description}}">
+            <h2 class="w3-black" style="display:none">{{pic.name}}</h2>
         </div>
         {% endfor%}
     </div>
 
-    <div id="myModal" class="w3-modal  " style="opacity:1">
-            <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
-                  onclick="closeModal()" style="cursor:pointer">×</span>
-        <div class="">
+    <div id="modal01" class="w3-modal">
+        <div class="w3-black w3-display-middle">
+            <div class="container">
+                <header class="w3-container ">
+      <span onclick="document.getElementById('modal01').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+                    <h2 id="caption"></h2>
 
-            <div class=" w3-modal-content w3-center" style="max-width:600px">
+                </header>
 
-                <div class="w3-row">
-                    {% for pic in pics %}
-                    <div class="w3-twothird">
+                <div class="w3-container">
+                    <img id="img01" style="width:auto;cursor:pointer; max-height:300px" >
 
-
-                        <img class="mySlides  " src="{{pic.image.url}}" style="max-height:50vh; width:60%">
-
-
-                    </div>
-                    {% endfor%}
-                    <div class="w3-third">
-                        <p id="caption"></p>
-                        <img class="demo " src="{{pic.image.url}}"
-                             style="width:40vw; height:40vh; display:none" onclick="currentDiv(1)"
-                             alt="{{pic.description}}">
-
-
-                    </div>
 
                 </div>
 
+                <footer class="w3-container">
 
-                <!--<div class="w3-row w3-black w3-center">-->
+                </footer>
+            </div>
+        </div>
+    </div>
 
-
-                <!--<div class="w3-display-container">-->
-
-
-                <!--<span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>-->
-                <!--<span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>-->
-                <!--</div>-->
-
-                <!--{% for pic in pics %}-->
-                <!--<div class="w3-col m3">-->
-
-
-                <!--</div>-->
-                <!--{% endfor%}-->
-                <!--</div> &lt;!&ndash; End row &ndash;&gt;-->
-            </div> <!-- End w3-content -->
-
-        </div> <!-- End modal content -->
-    </div> <!-- End modal -->
 
 </div>
 
 
 <script>
-function openModal() {
-  document.getElementById('myModal').style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById('myModal').style.display = "none";
-}
-
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex -= n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
   var dots = document.getElementsByClassName("demo");
   var captionText = document.getElementById("caption");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
-  }
-  x[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-opacity-off";
-  captionText.innerHTML = dots[slideIndex-1].alt;
+  captionText.innerHTML = dots.alt;
 }
-
-
 
 // Toggle grid padding
 function myFunction() {
@@ -267,6 +208,9 @@ function myFunction() {
         navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
     }
 }
+
+
+
 
 
 
