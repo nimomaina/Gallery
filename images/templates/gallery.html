@@ -58,6 +58,7 @@ body, html {
 
 
 
+
 </style>
 <body>
 
@@ -82,7 +83,7 @@ body, html {
         <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">DASHBOARD</a>
 
         <div class="w3-dropdown-hover w3-right">
-            <a class="w3-button">Filter Location             <i class="fas fa-angle-down ">   </i></a>
+            <a class="w3-button">Filter Location <i class="fas fa-angle-down "> </i></a>
 
             <div class="w3-dropdown-content w3-bar-block w3-border">
                 {%if locations%}
@@ -107,9 +108,11 @@ body, html {
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container" id="home">
     <div class="w3-display-middle">
+        <h2>NimPic</h2>
         <form class="w3-center " role="search" action="{%url 'search_category' %}">
             <div class="w3-bar">
-                <input type="text" class="w3-input form-control w3-bar-item" placeholder="Search Images" name="Category">
+                <input type="text" class="w3-input form-control w3-bar-item" placeholder="Search Images"
+                       name="Category">
 
 
                 <button class="w3-button w3-bar-item w3-hide-small w3-white" type="submit">
@@ -133,7 +136,7 @@ body, html {
     <div class="w3-row-padding w3-margin">
 
         {% for pic in pics %}
-        <div class="w3-col m3 s1">
+        <div class="w3-col m3 ">
             <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
                  onclick="openModal();currentDiv({{pic.id}})" class="w3-hover-shadow">
         </div>
@@ -148,24 +151,23 @@ body, html {
             <div class=" w3-modal-content w3-center" style="max-width:600px">
 
                 <div class="w3-row">
-                     {% for pic in pics %}
-                     <div class="w3-twothird">
+                    {% for pic in pics %}
+                    <div class="w3-twothird">
 
 
-                     <img class="mySlides  " src="{{pic.image.url}}" style="max-height:50vh; width:60%">
+                        <img class="mySlides  " src="{{pic.image.url}}" style="max-height:50vh; width:60%">
 
 
-                         </div>
+                    </div>
                     {% endfor%}
-                     <div class="w3-third">
-                         <p id="caption"></p>
-                         <img class="demo " src="{{pic.image.url}}"
+                    <div class="w3-third">
+                        <p id="caption"></p>
+                        <img class="demo " src="{{pic.image.url}}"
                              style="width:40vw; height:40vh; display:none" onclick="currentDiv(1)"
                              alt="{{pic.description}}">
 
 
-
-                         </div>
+                    </div>
 
                 </div>
 
@@ -173,21 +175,19 @@ body, html {
                 <!--<div class="w3-row w3-black w3-center">-->
 
 
-                    <!--<div class="w3-display-container">-->
+                <!--<div class="w3-display-container">-->
 
 
+                <!--<span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>-->
+                <!--<span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>-->
+                <!--</div>-->
 
-                        <!--<span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>-->
-                        <!--<span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>-->
-                    <!--</div>-->
-
-                    <!--{% for pic in pics %}-->
-                    <!--<div class="w3-col m3">-->
-
+                <!--{% for pic in pics %}-->
+                <!--<div class="w3-col m3">-->
 
 
-                    <!--</div>-->
-                    <!--{% endfor%}-->
+                <!--</div>-->
+                <!--{% endfor%}-->
                 <!--</div> &lt;!&ndash; End row &ndash;&gt;-->
             </div> <!-- End w3-content -->
 
@@ -258,6 +258,15 @@ function w3_close() {
 }
 
 
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
 
 
 
