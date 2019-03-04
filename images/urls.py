@@ -8,6 +8,7 @@ urlpatterns=[
 
     url('^$',views.pictures,name='pictures'),
     url(r'^search/', views.search_category, name='search_category'),
+    url(r'^location/', views.filter_location, name='filter_location'),
 
 ]
 

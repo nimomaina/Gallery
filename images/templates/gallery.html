@@ -77,10 +77,16 @@ body, html {
         <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">HOME</a>
         <div class="w3-dropdown-hover w3-right">
             <a class="w3-button">Filter <i class="fas fa-angle-down fa-2x"></i></a>
+
             <div class="w3-dropdown-content w3-bar-block w3-border">
-                <a href="#" class="w3-bar-item w3-button">Food</a>
-                <a href="#" class="w3-bar-item w3-button">Fashion</a>
-                <a href="#" class="w3-bar-item w3-button">Auto</a>
+                {%if locations%}
+                <form role="filter" class="" action="{%url 'filter_location'%}">
+                {%for location in locations%}
+                <input type="submit" name="location" class="w3-bar-item w3-button" value="{{location.name}}"/>
+                {% endfor %}
+                    </form>
+
+                {% endif%}
             </div>
         </div>
     </div>

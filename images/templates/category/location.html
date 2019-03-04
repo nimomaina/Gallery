@@ -2,19 +2,19 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <div class="row">
-    {% if Category %}
-    <h2>Found {{ Category|length}} in {{message}}
+    {% if location %}
+    <h2>Found {{ location|length}} in {{message}}
 
     </h2>
     {% else %}
-    <h2>Sorry, We don't have any images in {{message}} Category</h2>
+    <h2>Sorry, We don't have any images in {{message}} </h2>
     {% endif %}
 
 </div>
 <!--end of row-->
 <div class="row">
-    {% if Category %}
-    {% for pic in Category %}
+    {% if location %}
+    {% for pic in location %}
     <div class="w3-col m3">
         <img src="{{pic.image.url}}" style="">
     </div>

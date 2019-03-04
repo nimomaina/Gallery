@@ -3,8 +3,9 @@ from .models import *
 
 # Create your views here.
 def pictures(request):
+    locations = Location.objects.all()
     pics = Picture.objects.all()
-    return render(request, 'gallery.html' ,{"pics":pics})
+    return render(request, 'gallery.html' ,{"pics":pics, "locations":locations})
 
 
 def search_category(request):
@@ -24,15 +25,12 @@ def search_category(request):
 
 def filter_location(request):
     locations = Location.objects.all()
-    location= request.GET.get("Location")
+    location = request.GET.get("location")
 
     searched_image = Picture.filter_by_location(location)
     message = f"{location}"
 
-    return render(request,'category/searched.html', {"message":message,"Category":searched_image})
+    return render(request,'category/location.html', {"message":message,"location":searched_image, "locations":locations})
 
-else:
-    message = "You haven't searched for anything"
-    return render(request,'category/searched.html',{"message":message})
 
 
