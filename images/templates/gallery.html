@@ -132,17 +132,20 @@ body, html {
 
 
 
-        <!--<div class="w3-col m3 ">-->
-            <!--<img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"-->
-                 <!--class="w3-hover-shadow " data-toggle="modal" data-target="#{{pic.id}}">-->
-        <!--</div>-->
+        <div class="w3-col m3 ">
+            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+                 class="w3-hover-shadow " data-toggle="modal" data-target="#{{pic.id}}">
+        </div>
     <!---->
 
 <div class="container">
   {% for pic in pics %}
-  <!-- Trigger the modal with a button -->
-  <img  src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+
+
+        <div class="w3-col m3 ">
+            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
                  class="w3-hover-shadow " data-toggle="modal" data-target="#{{pic.id}}">
+        </div>
 
   <!-- Modal -->
   <div class="modal fade" id="{{pic.id}}" role="dialog">
