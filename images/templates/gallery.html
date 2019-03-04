@@ -34,7 +34,7 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../media/clothe.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../media/autumn.jpg');
   min-height: 100%;
 }
 
@@ -48,6 +48,7 @@ body, html {
     min-height: 400px;
   }
 }
+
 
 
 
@@ -74,17 +75,22 @@ body, html {
            href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
+
+        <a href=#><i class="fas fa-image fa-2x w3-bar-item"></i> </a>
         <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">HOME</a>
+
+        <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">DASHBOARD</a>
+
         <div class="w3-dropdown-hover w3-right">
-            <a class="w3-button">Filter <i class="fas fa-angle-down fa-2x"></i></a>
+            <a class="w3-button">Filter Location             <i class="fas fa-angle-down ">   </i></a>
 
             <div class="w3-dropdown-content w3-bar-block w3-border">
                 {%if locations%}
                 <form role="filter" class="" action="{%url 'filter_location'%}">
-                {%for location in locations%}
-                <input type="submit" name="location" class="w3-bar-item w3-button" value="{{location.name}}"/>
-                {% endfor %}
-                    </form>
+                    {%for location in locations%}
+                    <input type="submit" name="location" class="w3-bar-item w3-button" value="{{location.name}}"/>
+                    {% endfor %}
+                </form>
 
                 {% endif%}
             </div>
@@ -94,15 +100,16 @@ body, html {
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
 
+        <a href="{%url 'pictures'%}" class="w3-bar-item w3-button">DASHBOARD</a>
     </div>
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+<div class="bgimg-1 w3-display-container" id="home">
     <div class="w3-display-middle">
-        <form class="w3-center w3-xlarge w3-wide w3-animate-opacity" role="search" action="{%url 'search_category' %}">
+        <form class="w3-center " role="search" action="{%url 'search_category' %}">
             <div class="w3-bar">
-                <input type="text" class="w3-input w3-round w3-bar-item" placeholder="Search Images" name="Category">
+                <input type="text" class="w3-input form-control w3-bar-item" placeholder="Search Images" name="Category">
 
 
                 <button class="w3-button w3-bar-item w3-hide-small w3-white" type="submit">
@@ -124,10 +131,11 @@ body, html {
 
 
     <div class="w3-row-padding w3-margin">
+
         {% for pic in pics %}
-        <div class="w3-col m3">
-            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer"
-                 onclick="openModal();currentDiv(1)" class="w3-hover-shadow">
+        <div class="w3-col m3 s1">
+            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+                 onclick="openModal();currentDiv({{pic.id}})" class="w3-hover-shadow">
         </div>
         {% endfor%}
     </div>
@@ -138,33 +146,49 @@ body, html {
         <div class="">
 
             <div class=" w3-modal-content w3-center" style="max-width:600px">
-                {% for pic in pics %}
-                <img class="mySlides  w3-center" src="{{pic.image.url}}" style="max-height:70vh; width:100%">
-                {% endfor%}
 
-                <div class="w3-row w3-black w3-center">
-
-                    <p id="captionss">Nairobi</p>
-
-                    <div class="w3-display-container">
+                <div class="w3-row">
+                     {% for pic in pics %}
+                     <div class="w3-twothird">
 
 
-                        <p id="caption">Style</p>
-                        <span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>
-                        <span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>
-                    </div>
+                     <img class="mySlides  " src="{{pic.image.url}}" style="max-height:50vh; width:60%">
 
-                    {% for pic in pics %}
-                    <div class="w3-col m3">
 
-                        <img class="demo " src="{{pic.image.url}}"
+                         </div>
+                    {% endfor%}
+                     <div class="w3-third">
+                         <p id="caption"></p>
+                         <img class="demo " src="{{pic.image.url}}"
                              style="width:40vw; height:40vh; display:none" onclick="currentDiv(1)"
                              alt="{{pic.description}}">
 
 
-                    </div>
-                    {% endfor%}
-                </div> <!-- End row -->
+
+                         </div>
+
+                </div>
+
+
+                <!--<div class="w3-row w3-black w3-center">-->
+
+
+                    <!--<div class="w3-display-container">-->
+
+
+
+                        <!--<span class="w3-display-left w3-btn" onclick="plusDivs(-1)">❮</span>-->
+                        <!--<span class="w3-display-right w3-btn" onclick="plusDivs(1)">❯</span>-->
+                    <!--</div>-->
+
+                    <!--{% for pic in pics %}-->
+                    <!--<div class="w3-col m3">-->
+
+
+
+                    <!--</div>-->
+                    <!--{% endfor%}-->
+                <!--</div> &lt;!&ndash; End row &ndash;&gt;-->
             </div> <!-- End w3-content -->
 
         </div> <!-- End modal content -->
@@ -190,7 +214,7 @@ function plusDivs(n) {
 }
 
 function currentDiv(n) {
-  showDivs(slideIndex += n);
+  showDivs(slideIndex = n);
 }
 
 function showDivs(n) {
@@ -232,6 +256,7 @@ function w3_open() {
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
+
 
 
 
