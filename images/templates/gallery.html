@@ -4,4 +4,28 @@
 {{block.super}}
 
 
-{% endblock %
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container" id="home">
+    <div class="w3-display-middle">
+        <h2>NimPic</h2>
+        <form class="w3-center " role="search" action="{%url 'search_category' %}">
+            <div class="w3-bar">
+                <input type="text" class="w3-input form-control w3-bar-item" placeholder="Search Images"
+                       name="Category">
+
+
+                <button class="w3-button w3-bar-item w3-hide-small w3-white" type="submit">
+                    <i class="fa fa-search "></i>
+
+                </button>
+
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<!-- Photo Grid -->
+{% endblock %}
