@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
 
 <style>
 body,h1 {font-family: "Montserrat", sans-serif}
@@ -48,10 +51,6 @@ body, html {
     min-height: 400px;
   }
 }
-.mySlides {display:none}
-
-
-
 
 
 </style>
@@ -127,56 +126,59 @@ body, html {
 
 <!-- Photo Grid -->
 
+
+
+    <!--<div class="w3-row-padding w3-margin">-->
+
+
+
+        <!--<div class="w3-col m3 ">-->
+            <!--<img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"-->
+                 <!--class="w3-hover-shadow " data-toggle="modal" data-target="#{{pic.id}}">-->
+        <!--</div>-->
+    <!---->
+
 <div class="container">
+  {% for pic in pics %}
+  <!-- Trigger the modal with a button -->
+  <img  src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+                 class="w3-hover-shadow " data-toggle="modal" data-target="#{{pic.id}}">
 
+  <!-- Modal -->
+  <div class="modal fade" id="{{pic.id}}" role="dialog">
+    <div class="modal-dialog">
 
-    <div class="w3-row-padding w3-margin">
-
-        {% for pic in pics %}
-
-        <div class="w3-col m3 ">
-            <img src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
-                 onclick="onClick(this)" class="w3-hover-shadow demo" alt = "{{pic.description}}">
-            <h2 class="w3-black" style="display:none">{{pic.name}}</h2>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
         </div>
-        {% endfor%}
-    </div>
+        <div class="modal-body">
+<img  src="{{pic.image.url}}" style="width:100%;cursor:pointer; max-height:300px"
+                 class="w3-hover-shadow " data-toggle="modal" data-target="#{{pic.id}}">
 
-    <div id="modal01" class="w3-modal">
-        <div class="w3-black w3-display-middle">
-            <div class="container">
-                <header class="w3-container ">
-      <span onclick="document.getElementById('modal01').style.display='none'"
-            class="w3-button w3-display-topright">&times;</span>
-                    <h2 id="caption"></h2>
-
-                </header>
-
-                <div class="w3-container">
-                    <img id="img01" style="width:auto;cursor:pointer; max-height:300px" >
-
-
-                </div>
-
-                <footer class="w3-container">
-
-                </footer>
-            </div>
         </div>
-    </div>
+        <div class="modal-footer">
+          <!-- The text field -->
+<input type="text" value="https://i.pinimg.com/564x/c5/33/01/c5330104df3062f0a08e30a9ed017cfe.jpg" id="myInput" style = "display:none">
 
+<!-- The button used to copy the text -->
+<button onclick="myOtherFunction()">Copy text</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    {% endfor %}
 
 </div>
 
 
+
+
 <script>
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = dots.alt;
-}
+
 
 // Toggle grid padding
 function myFunction() {
@@ -186,6 +188,21 @@ function myFunction() {
   } else {
     x.className = x.className.replace("w3-row-padding", "w3-row");
   }
+
+}
+
+function myOtherFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
 }
 
 // Open and close sidebar
@@ -208,12 +225,6 @@ function myFunction() {
         navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
     }
 }
-
-
-
-
-
-
 
 
 
