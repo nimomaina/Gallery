@@ -7,6 +7,7 @@ from . import views
 urlpatterns=[
 
     url('^$',views.pictures,name='pictures'),
+    url(r'^search/', views.search_category, name='search_category'),
 
 ]
 

@@ -22,16 +22,16 @@ class Picture(models.Model):
 
     @classmethod
     def search_by_category(cls,category):
-        pic = cls.objects.filter(category__icontains = category)
+        pic = cls.objects.filter(category__name__icontains = category)
         return pic
 
     @classmethod
-    def search_by_category(cls, category):
-        pic = cls.objects.filter(category__icontains=category)
+    def filter_by_location(cls, location):
+        pic = cls.objects.filter(location__name__icontains=location)
         return pic
 
     def get_image_by_id(id):
-        pic = Picture.objects.filter(id)
+        pic = Picture.objects.get(id)
         return pic
 
 

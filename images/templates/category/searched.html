@@ -1,0 +1,25 @@
+{% block content%}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="row">
+    {% if Category %}
+    <h2>Found {{ Category|length}} in {{message}}
+
+    </h2>
+    {% else %}
+    <h2>Found 0 articles for that term {{message}}</h2>
+    {% endif %}
+
+</div>
+<!--end of row-->
+<div class="row">
+    {% if Category %}
+    {% for pic in Category %}
+    <div class="w3-col m3">
+        <img src="{{pic.image.url}}" style="">
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}
