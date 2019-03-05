@@ -4,6 +4,13 @@ from django.db import models
 class Location(models.Model):
     name = models.CharField(max_length=30)
 
+    def save_loc(self):
+        self.save()
+
+    def delete_loc(self):
+        self.delete()
+
+
 class Category(models.Model):
     name = models.CharField(max_length=30)
 
